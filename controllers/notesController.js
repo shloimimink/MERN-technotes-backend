@@ -13,7 +13,7 @@ const getAllNotes = asyncHandler(async (req, res) => {
     if (!notes?.length) {
         return res.status(400).json({message: 'No notes found'})
     }
-    
+
     // Add username to each note before sending the response
     // See Promise.all with map() here: https://youtu.be/4lqJBBEpjRE
     // You could also do this with a for...of loop
@@ -43,13 +43,12 @@ const createNewNote = asyncHandler(async (req, res) => {
     }
     // Create and store the new user
     const note = await Note.create({user, title, text})
-
+    
     if (note) { // Created
         return res.status(201).json({message: 'New note created'})
     } else {
         return res.status(400).json({message: 'Invalid note data received'})
     }
-
 })
 
 // @desc Update a note
