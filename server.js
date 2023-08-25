@@ -1,4 +1,5 @@
 require('dotenv').config()
+require('express-async-errors')
 const colors = require('colors')
 const express = require('express')
 const app = express()
@@ -25,6 +26,7 @@ app.use(cookieParser())
 app.use(express.json())
 
 app.use('/', require('./routes/root'))
+app.use('/auth', require('./routes/authRoutes'))
 app.use('/users', require('./routes/userRoutes'))
 app.use('/notes', require('./routes/noteRoutes'))
 
